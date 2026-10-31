@@ -1,0 +1,1 @@
+User-agent: *\nAllow: /\nSitemap: https://charlesatugonza077-hue.github.io/augusta-uganda/sitemap.xml\n
