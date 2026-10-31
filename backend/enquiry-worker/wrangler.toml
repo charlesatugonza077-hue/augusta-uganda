@@ -1,0 +1,9 @@
+name = "augusta-enquiries"
+main = "src/index.js"
+compatibility_date = "2026-10-31"
+workers_dev = true
+
+# Add secrets after the first deploy:
+# wrangler secret put RESEND_API_KEY
+# wrangler secret put ENQUIRY_FROM_EMAIL
+# wrangler secret put ENQUIRY_TO_EMAIL

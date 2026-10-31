@@ -1,0 +1,4 @@
+# Local development only. Do not commit a real .dev.vars file.
+RESEND_API_KEY=replace_with_resend_key
+ENQUIRY_FROM_EMAIL=Augusta enquiries <enquiries@example.com>
+ENQUIRY_TO_EMAIL=owner@example.com
