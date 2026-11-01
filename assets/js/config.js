@@ -1,5 +1,4 @@
 /* Public website configuration. Keep secret values in the backend host, never here. */
 window.AUGUSTA_CONFIG = Object.freeze({
-  // Insert the deployed Cloudflare Worker URL after completing docs/INQUIRY_SERVICE.md.
-  enquiryEndpoint: ""
+  enquiryEndpoint: "https://script.google.com/macros/s/AKfycbwGafT7jfmdz9RtHXlwBSUa6mvyD6FcKFvsJIDnLDcRdtDykmrfoYfXhY7AjBoI6zMz_g/exec"
 });
