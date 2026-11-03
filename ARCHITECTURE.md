@@ -22,6 +22,6 @@ The source under `backend/enquiry-worker/` is dormant reference code only. It is
 5. Do not claim a form enquiry was received until the visitor has sent it and Augusta has actually received it.
 
 ## Outstanding work
-- Confirm and document the final Augusta Home scope and pricing model; current public pages conflict with older internal operating and sales drafts.
+- Keep the Augusta Home website, sales scripts and operating documents aligned with `docs/AUGUSTA_HOME_CURRENT_MODEL.md`; obtain approval before changing prices or defining a fixed all-inclusive laundry package.
 - Complete real-device checks for mobile layout and WhatsApp handoff.
 - Review privacy and client policy wording with the Director and Ugandan counsel before treating proposed terms as effective.
