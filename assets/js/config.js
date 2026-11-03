@@ -33,6 +33,7 @@ window.AUGUSTA_CONFIG = Object.freeze({ whatsappNumber: "256741102053" });
       grid.append(column);
     });
     if ((inServiceFolder || path.endsWith("/home-services.html")) && !document.querySelector("[data-before-book]")) {
+      const isAugustaHome = path.endsWith("/home-services.html") || /\/services\/(home-cleaning-organisation|laundry-ironing|wardrobe-organisation)\.html$/.test(path);
       const section = document.createElement("section");
       section.className = "section";
       section.dataset.beforeBook = "";
@@ -46,7 +47,7 @@ window.AUGUSTA_CONFIG = Object.freeze({ whatsappNumber: "256741102053" });
       const heading = document.createElement("h2");
       heading.textContent = "Let’s confirm the important details first.";
       const copy = document.createElement("p");
-      copy.textContent = "Augusta will confirm the service scope, date, location, price or pricing basis, payment timing and key exclusions in writing before a booking is confirmed.";
+      copy.textContent = "Augusta will confirm the service scope, date, location, price or pricing basis, payment timing and key exclusions in writing before a booking is confirmed." + (isAugustaHome ? " For Augusta Home, the proposed UGX 30,000 commitment fee is paid before a booking is confirmed and credited toward the first service payment. It is not automatically non-refundable; cancellation and refund outcomes are handled under the proposed booking policy and applicable law." : "");
       const link = document.createElement("a");
       link.className = "button";
       link.href = policyHref;
