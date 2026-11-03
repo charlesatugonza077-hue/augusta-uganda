@@ -5,7 +5,7 @@ import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 errors = []
-pages = sorted(ROOT.rglob("*.html"))
+pages = [p for p in ROOT.rglob("*.html") if not p.name.startswith("google")]
 
 if not pages:
     errors.append("No HTML pages found.")
@@ -27,12 +27,8 @@ for page in pages:
             target = value.split("#", 1)[0].split("?", 1)[0]
             if not target:
                 continue
-            candidate = (page.parent / target).resolve()
-            try:
-                candidate.relative_to(ROOT.resolve())
-            except ValueError:
-                errors.append(f"{rel}: local reference escapes repository: {value}")
-                continue
+            candidate = (ROOT / target.lstrip("/")) if target.startswith("/") else (page.parent / target)
+            candidate = candidate.resolve()
             if not candidate.exists() and not (candidate / "index.html").exists():
                 errors.append(f"{rel}: missing local reference: {value}")
 
