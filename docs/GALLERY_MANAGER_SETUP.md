@@ -22,7 +22,7 @@ The starter storage bucket allows files up to 50 MB. Compress video before uploa
 
 ## Implementation status
 
-The private login, upload, category, draft/publish, edit and delete interface is implemented in this branch. It is not operational until Supabase is connected and the administrator is registered. The public gallery and individual service pages must also be wired to read published records from Supabase before uploads appear on the live public pages. That integration is the next step once the project URL and public key are configured.
+The private login, upload, category, draft/publish, edit and delete interface is implemented in this branch. It is not operational until Supabase is connected and the administrator is registered. The public gallery page now reads published records from Supabase when the project URL and public anon/publishable key are configured. Individual service pages are not yet connected to category-filtered media; that is a later enhancement.
 
 ## Security
 
