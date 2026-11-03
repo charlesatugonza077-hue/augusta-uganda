@@ -1,0 +1,1 @@
+Temporary GitHub write-access verification. This file is intended to be removed immediately after the permission test.
