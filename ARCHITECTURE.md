@@ -1,36 +1,27 @@
 # Augusta architecture
 
 ## Source of truth
-This repository is the single source of truth for Augusta’s website, user experience, front-end, back-end services, design assets, deployment configuration and technical documentation.
+This repository is the source of truth for Augusta's public website, interface, front-end code, optional backend experiments, design assets, deployment configuration and operating documentation.
 
-No production change is complete until its source, configuration and documentation are committed here.
+## Current production setup
+- Public site: static HTML, CSS and browser JavaScript.
+- Hosting: GitHub Pages, published from the `main` branch.
+- Enquiries: the contact form prepares a WhatsApp message; the visitor reviews it and presses Send in WhatsApp.
+- No website form submission is sent to an Augusta database, email API or CRM.
+- No Cloudflare Worker or external email-delivery service is part of the active website flow.
+- Automated quality checks run through GitHub Actions.
 
-## Current build
-- Public site: GitHub Pages from the `main` branch
-- Front end: static HTML, CSS and browser JavaScript in `index.html`
-- Search support: `robots.txt`, `sitemap.xml` and Google Search Console verification file
-- Enquiry form: currently interface-only; it does not yet transmit information to an inbox or database
-
-## Planned full-stack layout
-```
-/
-├── frontend/        # reusable interface code when the static site graduates
-├── backend/         # server/API code, validation and integrations
-├── design/          # UI design system, assets and user-flow notes
-├── docs/            # architecture, deployment and operating documentation
-├── public/          # published site assets
-├── index.html       # current published website
-├── robots.txt
-├── sitemap.xml
-└── README.md
-```
+## Optional backend experiments
+The source under `backend/enquiry-worker/` is dormant reference code only. It is not deployed, called by the public website, or part of the zero-budget production setup. Do not activate its deployment or add provider credentials without explicit approval of a budget and data-handling plan.
 
 ## Delivery rules
-1. Build every website, API, database schema, design decision and deployment configuration in this repository.
-2. Keep credentials, keys, customer data and private form submissions out of GitHub. Store only an `.env.example` with placeholder variable names when a backend is added.
-3. Use a separate branch and review for material changes once collaborators join.
-4. Update this document whenever the technology, hosting or data flow changes.
-5. The live site must always be reproducible from files in this repository.
+1. Keep production source, configuration and documentation in this repository.
+2. Never commit passwords, API keys, customer data or private enquiries.
+3. Make material changes on a branch and validate them before merging.
+4. Update this document whenever hosting, enquiry handling or data flows change.
+5. Do not claim a form enquiry was received until the visitor has sent it and Augusta has actually received it.
 
-## Next technical milestone
-When Augusta needs working enquiry capture, add a documented backend or managed form integration here, with spam protection, consent wording, secure data handling and an export or CRM path.
+## Outstanding work
+- Confirm and document the final Augusta Home scope and pricing model; current public pages conflict with older internal operating and sales drafts.
+- Complete real-device checks for mobile layout and WhatsApp handoff.
+- Review privacy and client policy wording with the Director and Ugandan counsel before treating proposed terms as effective.
