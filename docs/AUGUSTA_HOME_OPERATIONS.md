@@ -1,3 +1,5 @@
+> **STATUS WARNING — HISTORICAL INTERNAL DRAFT (3 November 2026):** This document does not match the currently published Augusta Home offer in all respects. In particular, older drafts may describe different visit frequencies, included cleaning/organisation tasks or laundry prices. Do not quote, promise or operationalise these details. Use the current public service pages only as a description of what is presently published, and obtain written Director approval of one final scope-and-price schedule before using any package or price in a customer booking.
+
 "# Augusta Home: operating model
 
 ## Purpose

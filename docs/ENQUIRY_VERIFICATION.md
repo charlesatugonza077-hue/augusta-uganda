@@ -1,28 +1,27 @@
-# Enquiry service verification
+# Enquiry flow verification
 
-## Verified in repository
+## Current public website behaviour
+- The public contact page loads `assets/js/config.js` and `assets/js/site.js`.
+- The form validates required fields in the browser and prepares a WhatsApp click-to-chat URL.
+- The visitor reviews the message and must press Send in WhatsApp.
+- The website does not send the form data to an email provider, database, CRM, Google Apps Script or Cloudflare Worker.
+- A visible fallback link is provided if the browser does not open the WhatsApp handoff automatically.
+- The configured public WhatsApp number is stored in `assets/js/config.js`; confirm it remains the approved Augusta contact number.
 
-- The public site loads `assets/js/config.js` and `assets/js/enquiry.js`.
-- The form collects only name, business, contact detail, requested support, situation and consent.
-- A honeypot, browser-side required fields and a consent requirement are present.
-- The Worker permits only POST and OPTIONS requests from `https://charlesatugonza077-hue.github.io`. It requires JSON, validates required fields, limits field lengths and HTML-escapes email content.
-- Email delivery is server-side through Resend. The Worker reads `RESEND_API_KEY`, `ENQUIRY_FROM_EMAIL` and `ENQUIRY_TO_EMAIL` only from its runtime environment.
-- `npm run check` and `npm test` cover syntax plus rejection of bad origins, missing consent, non-POST requests and honeypot submissions. The test also confirms a valid submission only reports success after the email provider accepts it.
+## What has been tested
+- JavaScript syntax is checked in GitHub Actions.
+- The repository's static checks validate HTML structure, local references and sitemap entries.
+- These checks do not prove that WhatsApp opens correctly on every mobile browser or that Augusta receives a message.
 
-## Not yet connected or evidenced
+## Dormant backend experiment
+`backend/enquiry-worker/` contains an optional, inactive prototype. It is not deployed or referenced by the current website. Its email-provider dependencies and credentials are not part of the zero-budget setup. The deployment workflow has been removed so a routine push cannot deploy it accidentally.
 
-`assets/js/config.js` deliberately has an empty `enquiryEndpoint`. The live form therefore fails safely and does not send enquiries anywhere. No deployed Worker URL, Cloudflare account configuration, Resend sender verification, recipient inbox, CRM sheet connection or end-to-end delivery result is stored in this repository.
+## Manual end-to-end test still required
+1. Open the live contact page on an iPhone and an Android device.
+2. Submit a clearly marked test enquiry using non-sensitive test details.
+3. Confirm WhatsApp opens with the correct service, location, timing and message text.
+4. Confirm the fallback link works if the initial handoff is blocked.
+5. Press Send manually and verify Augusta receives the message in the intended WhatsApp account.
+6. Repeat from a service page that preselects a service in the contact form.
 
-## Safe completion checklist
-
-1. In Cloudflare, deploy `backend/enquiry-worker` and record the public `workers.dev` URL.
-2. Add the three runtime secrets with `wrangler secret put`; never place their values in GitHub.
-3. Verify the Resend sending address/domain and confirm the Augusta recipient inbox.
-4. Commit only the Worker URL to `assets/js/config.js` as `enquiryEndpoint`.
-5. Run `npm run check && npm test`, then deploy.
-6. With Charles’s approval, submit one clearly marked test enquiry and confirm the inbox receives it.
-7. If a CRM sheet is required, add a dedicated authenticated integration after the email path is proven; do not expose sheet credentials or use a public Apps Script URL.
-
-## Required approval or private values
-
-Charles must supply or approve access to the Cloudflare account, a Resend API key, a verified sender address, the Augusta recipient inbox, and the target CRM system or sheet. Those values must be set in the relevant provider dashboards, not committed to this repository.
+Never use real customer personal data for test submissions.
