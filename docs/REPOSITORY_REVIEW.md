@@ -33,4 +33,4 @@
 - Run the expanded local-link, sitemap and accessibility-structure checks in CI.
 - Test the WhatsApp flow on real iOS and Android devices.
 - Review page performance and accessibility with browser-based tools.
-- Resolve the Home package scope/pricing conflict and then update all internal sales and operations documents from one approved source.
+- Reconcile remaining historical sales/operations drafts against `docs/AUGUSTA_HOME_CURRENT_MODEL.md` before using them; approve a fixed all-inclusive laundry package price before advertising it.
