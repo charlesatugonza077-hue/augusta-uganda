@@ -1,3 +1,63 @@
-/* Public website settings. Keep private credentials out of this file. */
-window.AUGUSTA_CONFIG = Object.freeze({ whatsappNumber: "256741102053", enquiryEndpoint: "https://script.google.com/macros/s/AKfycbzCiCkswkaXDmMfi8QcICCqwDe_sLYsysRay4OxwO4lY12q152KTEt_k4IU4kukb1Am8g/exec" });
-(()=>{const add=()=>{const inServices=location.pathname.includes("/services/")||location.pathname.endsWith("/home-services.html");const root=inServices&&location.pathname.includes("/services/")?"../":"";const href=root+"client-policies.html";document.querySelectorAll(".desktop-nav").forEach(nav=>{if(!nav.querySelector("[data-policy-link]")){const a=document.createElement("a");a.className="nav-link";a.href=href;a.dataset.policyLink="";a.textContent="Policies";nav.append(a)}});document.querySelectorAll("[data-mobile-menu]").forEach(menu=>{if(!menu.querySelector("[data-policy-link]")){const a=document.createElement("a");a.href=href;a.dataset.policyLink="";a.textContent="Client policies";menu.append(a)}});document.querySelectorAll(".footer-grid").forEach(grid=>{if(!grid.querySelector("[data-policy-footer]")){const box=document.createElement("div");box.innerHTML="<h4>Client policies</h4><a data-policy-footer href=\""+href+"\">Policy centre</a><a href=\""+root+"terms-of-service.html\">Terms of service</a><a href=\""+root+"privacy.html\">Privacy</a><a href=\""+root+"legal.html\">Legal information</a>";grid.append(box)}});if(inServices&&!document.querySelector("[data-before-book]")){const box=document.createElement("section");box.dataset.beforeBook="";box.className="section";box.innerHTML="<div class=\"wrap\"><div class=\"side-card\"><p class=\"eyebrow\">Before you book</p><h2>Let’s confirm the important details first.</h2><p>Augusta will confirm your service scope, date, location, price or pricing basis, payment timing and key exclusions in writing before booking. For Home services, the proposed UGX 30,000 commitment fee is credited toward your first service payment and is not automatically non-refundable.</p><p><a class=\"button\" href=\""+href+"\">Read client policies</a> <a class=\"button\" href=\""+root+"terms-of-service.html\">Proposed terms</a></p><p><small>Proposed policies pending Ugandan legal review and Director approval.</small></p></div></div>";const target=document.querySelector(".service-hero")||document.querySelector("main");if(target)target.insertAdjacentElement("afterend",box)}document.querySelectorAll("[data-enquiry-form]").forEach(form=>{if(!form.querySelector("[data-policy-note]")){const p=document.createElement("p");p.dataset.policyNote="";p.className="form-note";p.innerHTML="By sending an enquiry, you acknowledge Augusta’s <a href=\""+href+"\">proposed client policies</a> and <a href=\""+root+"privacy.html\">privacy notice</a>.";form.append(p)}})};if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",add);else add()})();
+/* Public settings only. No paid endpoint or private credentials are required. */
+window.AUGUSTA_CONFIG = Object.freeze({ whatsappNumber: "256741102053" });
+
+(() => {
+  const addLink = (parent, label, href, className, marker) => {
+    if (!parent || parent.querySelector(`[${marker}]`)) return;
+    const link = document.createElement("a");
+    link.textContent = label;
+    link.href = href;
+    if (className) link.className = className;
+    link.setAttribute(marker, "");
+    parent.append(link);
+  };
+  const addPolicyNavigation = () => {
+    const path = window.location.pathname;
+    const inServiceFolder = path.includes("/services/");
+    const root = inServiceFolder ? "../" : "";
+    const policyHref = root + "client-policies.html";
+    document.querySelectorAll(".desktop-nav").forEach(nav => addLink(nav, "Policies", policyHref, "nav-link", "data-policy-link"));
+    document.querySelectorAll("[data-mobile-menu]").forEach(menu => addLink(menu, "Client policies", policyHref, "", "data-policy-link"));
+    document.querySelectorAll(".footer-grid").forEach(grid => {
+      if (grid.querySelector('a[href$="client-policies.html"]')) return;
+      const column = document.createElement("div");
+      const heading = document.createElement("h4");
+      heading.textContent = "Client policies";
+      column.append(heading);
+      [["Policy centre","client-policies.html"],["Terms of service","terms-of-service.html"],["Booking & payments","booking-policy.html"],["Privacy","privacy.html"],["Legal information","legal.html"]].forEach(([label, href]) => {
+        const link = document.createElement("a");
+        link.textContent = label;
+        link.href = root + href;
+        column.append(link);
+      });
+      grid.append(column);
+    });
+    if ((inServiceFolder || path.endsWith("/home-services.html")) && !document.querySelector("[data-before-book]")) {
+      const section = document.createElement("section");
+      section.className = "section";
+      section.dataset.beforeBook = "";
+      const wrap = document.createElement("div");
+      wrap.className = "wrap";
+      const card = document.createElement("div");
+      card.className = "side-card";
+      const eyebrow = document.createElement("p");
+      eyebrow.className = "eyebrow";
+      eyebrow.textContent = "Before you book";
+      const heading = document.createElement("h2");
+      heading.textContent = "Let’s confirm the important details first.";
+      const copy = document.createElement("p");
+      copy.textContent = "Augusta will confirm the service scope, date, location, price or pricing basis, payment timing and key exclusions in writing before a booking is confirmed.";
+      const link = document.createElement("a");
+      link.className = "button";
+      link.href = policyHref;
+      link.textContent = "Read client policies";
+      card.append(eyebrow, heading, copy, link);
+      wrap.append(card);
+      section.append(wrap);
+      const target = document.querySelector(".service-hero") || document.querySelector("main");
+      if (target) target.insertAdjacentElement("afterend", section);
+    }
+  };
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", addPolicyNavigation, { once: true });
+  else addPolicyNavigation();
+})();

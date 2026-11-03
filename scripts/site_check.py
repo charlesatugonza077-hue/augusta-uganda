@@ -1,0 +1,42 @@
+from pathlib import Path
+import re
+import sys
+import xml.etree.ElementTree as ET
+
+ROOT = Path(__file__).resolve().parents[1]
+errors = []
+pages = [p for p in ROOT.rglob("*.html") if not p.name.startswith("google")]
+
+if not pages:
+    errors.append("No HTML pages found.")
+
+for page in pages:
+    source = page.read_text(encoding="utf-8")
+    rel = page.relative_to(ROOT)
+    if len(re.findall(r"<!doctype html>", source, flags=re.I)) != 1:
+        errors.append(f"{rel}: expected exactly one HTML doctype.")
+    if not re.search(r"<html\b[^>]*\blang=", source, flags=re.I):
+        errors.append(f"{rel}: missing html lang attribute.")
+    if not re.search(r"<title>\s*.+?\s*</title>", source, flags=re.I | re.S):
+        errors.append(f"{rel}: missing page title.")
+    for value in re.findall(r'(?:href|src)=[\"\']([^\"\']+)[\"\']', source, flags=re.I):
+        value = value.strip()
+        if value.startswith(("assets/", "images/", "design/")):
+            target = ROOT / value.split("#", 1)[0].split("?", 1)[0]
+            if not target.exists():
+                errors.append(f"{rel}: missing local asset: {value}")
+
+sitemap = ROOT / "sitemap.xml"
+if sitemap.exists():
+    try:
+        ET.parse(sitemap)
+    except ET.ParseError as exc:
+        errors.append(f"sitemap.xml: invalid XML: {exc}")
+else:
+    errors.append("sitemap.xml is missing.")
+
+if errors:
+    print("\n".join(errors))
+    sys.exit(1)
+
+print(f"Site checks passed for {len(pages)} HTML pages and sitemap.xml.")
