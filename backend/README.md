@@ -1,7 +1,7 @@
 # Augusta backend
 
-The published website is currently static, so this folder is intentionally a documented placeholder rather than a pretend backend.
+The current backend is a Cloudflare Worker in `enquiry-worker/`. It validates website enquiries and sends them through Resend to Augusta's configured inbox. Deployment instructions and required GitHub Actions secrets are in [docs/BACKEND_DEPLOYMENT.md](../../docs/BACKEND_DEPLOYMENT.md).
 
-When a working backend is needed, keep its API routes, validation, integration code, database schema or migration files, test instructions and `.env.example` here. Never commit secrets, live customer data or private access tokens.
+**Important:** this Worker currently sends email; it does not store enquiries in a database. The existing Google Sheets CRM remains separate. The private gallery manager will need a database and media storage integration as a separate implementation phase.
 
-The first likely backend feature is secure enquiry capture and routing to Augusta’s chosen inbox or CRM.
+Never commit secrets, live customer data or private access tokens.
