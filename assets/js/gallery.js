@@ -108,6 +108,7 @@
       }));
 
       render();
+      root.setAttribute("aria-busy", "false");
     } catch (error) {
       console.error("Augusta gallery could not load:", error);
       root.innerHTML = '<div class="gallery-empty"><h3>We could not load the portfolio</h3><p>Please try again in a moment. If the problem continues, contact Augusta directly.</p><button class="button gallery-retry" type="button">Try again</button></div>';
@@ -116,6 +117,7 @@
         if (status) status.textContent = "Reconnecting to the portfolio…";
         init();
       });
+      root.setAttribute("aria-busy", "false");
       if (status) status.textContent = "Portfolio temporarily unavailable.";
     }
   }
