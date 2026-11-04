@@ -111,6 +111,8 @@
     state.projects = projects.data || [];
     state.tasks = tasks.data || [];
     populateSelect("project-customer", state.customers, x => x.full_name + (x.business_name ? " · " + x.business_name : ""));
+    populateSelect("enquiry-customer", state.customers, x => x.full_name + (x.business_name ? " · " + x.business_name : ""));
+    populateSelect("project-enquiry", state.enquiries, x => x.contact_name + " · " + x.service);
     populateSelect("task-project", state.projects, x => x.title);
     renderOverview(); renderEnquiries(); renderCustomers(); renderProjects(); renderTasks();
     state.ready = true;
@@ -144,7 +146,7 @@
   $("enquiry-form").addEventListener("submit", event => {
     event.preventDefault();
     const form = event.currentTarget;
-    const payload = formPayload(form, ["contact_name","business_name","contact_method","service","location","message","preferred_date","priority"]);
+    const payload = formPayload(form, ["contact_name","business_name","customer_id","contact_method","service","location","message","preferred_date","priority"]);
     payload.source = "admin";
     payload.consent_recorded = false;
     if (!payload.contact_name || !payload.service) return;
@@ -154,7 +156,7 @@
   $("project-form").addEventListener("submit", event => {
     event.preventDefault();
     const form = event.currentTarget;
-    const payload = formPayload(form, ["title","customer_id","service","start_date","due_date","quote_amount","currency","description"]);
+    const payload = formPayload(form, ["title","customer_id","enquiry_id","service","start_date","due_date","quote_amount","currency","description"]);
     if (!payload.title || !payload.service) return;
     if (payload.quote_amount !== null) payload.quote_amount = Number(payload.quote_amount);
     saveForm(form, "projects", payload, "project-feedback", "Project created.");
