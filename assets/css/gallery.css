@@ -1,1 +1,27 @@
-.gallery-filters{display:flex;flex-wrap:wrap;gap:9px;margin:24px 0}.gallery-filters button{border:1px solid var(--line,#dce2d9);border-radius:999px;background:#fff;color:var(--forest,#163b32);padding:9px 15px;font:inherit;cursor:pointer}.gallery-filters button[aria-pressed="true"]{background:var(--forest,#163b32);color:#fff}.portfolio-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}.portfolio-item{overflow:hidden;border:1px solid var(--line,#dce2d9);border-radius:16px;background:#fff}.portfolio-media{aspect-ratio:4/3;background:var(--soft,#f1f3ed)}.portfolio-media img,.portfolio-media video{display:block;width:100%;height:100%;object-fit:cover}.portfolio-copy{padding:18px}.portfolio-copy .eyebrow{margin:0 0 7px}.portfolio-copy h3{margin:0 0 8px;color:var(--forest,#163b32)}.portfolio-copy p:last-child{margin-bottom:0}.gallery-loading,.gallery-empty{grid-column:1/-1;padding:34px;text-align:center;color:var(--muted,#65736b);background:var(--soft,#f1f3ed);border-radius:12px}@media(max-width:850px){.portfolio-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.portfolio-grid{grid-template-columns:1fr}.gallery-filters{gap:7px}.gallery-filters button{font-size:.85rem;padding:8px 12px}}
+.gallery-filters{display:flex;flex-wrap:wrap;gap:9px;margin:25px 0 30px}
+.gallery-filters button{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--deep);padding:9px 15px;font:inherit;font-size:13px;font-weight:750;cursor:pointer;transition:background .18s,color .18s,border-color .18s,transform .18s}
+.gallery-filters button:hover{border-color:var(--brand);transform:translateY(-1px)}
+.gallery-filters button:focus-visible,.gallery-retry:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+.gallery-filters button[aria-pressed="true"]{border-color:var(--deep);background:var(--deep);color:#fff}
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;align-items:start}
+.portfolio-card{min-width:0;overflow:hidden;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:0 8px 24px rgba(22,59,50,.06);transition:transform .22s ease,box-shadow .22s ease}
+.portfolio-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.portfolio-media{position:relative;display:grid;place-items:center;aspect-ratio:4/3;overflow:hidden;background:var(--soft)}
+.portfolio-media img,.portfolio-media video{display:block;width:100%;height:100%;object-fit:cover}
+.portfolio-media img{transition:transform .45s ease}
+.portfolio-card:hover .portfolio-media img{transform:scale(1.035)}
+.portfolio-video{aspect-ratio:16/10;background:#102b25}
+.portfolio-video video{object-fit:contain}
+.portfolio-copy{padding:19px 20px 21px}
+.portfolio-type{margin:0 0 8px;color:var(--brand);font-size:11px;font-weight:900;letter-spacing:.1em;text-transform:uppercase}
+.portfolio-copy h3{margin:0;color:var(--deep);font-size:21px;line-height:1.15;letter-spacing:-.035em}
+.portfolio-description{margin:10px 0 0;color:var(--muted);font-size:14px;line-height:1.55}
+.media-unavailable{color:var(--muted);font-size:13px}
+.gallery-loading,.gallery-empty{grid-column:1/-1;padding:48px 24px;text-align:center;color:var(--muted);background:var(--soft);border:1px solid var(--line);border-radius:18px}
+.gallery-empty h3{margin:8px 0;color:var(--deep);font-size:24px;letter-spacing:-.04em}
+.gallery-empty p{max-width:470px;margin:0 auto 18px}
+.gallery-empty-mark{display:grid;place-items:center;width:42px;height:42px;margin:0 auto 12px;border:2px solid var(--deep);border-radius:13px;background:var(--sun);color:var(--deep);font-weight:950}
+.gallery-note{margin:20px 0 0;color:var(--muted);font-size:13px}
+@media(max-width:900px){.portfolio-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}}
+@media(max-width:600px){.portfolio-grid{grid-template-columns:1fr;gap:16px}.gallery-filters{gap:7px;margin:20px 0 24px}.gallery-filters button{padding:8px 11px;font-size:12px}.portfolio-copy{padding:17px}.portfolio-copy h3{font-size:20px}.gallery-loading,.gallery-empty{padding:36px 18px}}
+@media(prefers-reduced-motion:reduce){.portfolio-card,.portfolio-media img,.gallery-filters button{transition:none}}
