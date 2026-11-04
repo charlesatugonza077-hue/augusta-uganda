@@ -51,6 +51,7 @@
       "Hello Augusta, my name is " + data.name + ".",
       "I need: " + data.service + ".",
       "Location: " + data.location + ".",
+      data.contact ? "Preferred contact: " + data.contact + "." : "",
       "Preferred date or timing: " + data.timing + ".",
       "Details: " + (data.message || "I would like to discuss the details.")
     ].join("\n");
