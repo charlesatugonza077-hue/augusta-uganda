@@ -63,7 +63,7 @@
     const filter = $("enquiry-filter").value;
     const rows = state.enquiries.filter(x => filter === "all" || x.status === filter);
     $("enquiry-list").innerHTML = rows.length ? '<table class="ops-table"><thead><tr><th>Contact</th><th>Service / details</th><th>Priority</th><th>Status</th></tr></thead><tbody>' + rows.map(item =>
-      '<tr><td><strong>' + esc(item.contact_name) + '</strong><small>' + esc(item.business_name || item.contact_method || "No contact detail") + '</small><small>' + dateLabel(item.created_at) + '</small></td><td><strong>' + esc(item.service) + '</strong><small>' + esc(item.location || "Location not recorded") + '</small><small>' + esc(item.message || "") + '</small></td><td><span class="priority priority-' + esc(item.priority) + '">' + esc(item.priority) + '</span></td><td><select aria-label="Update enquiry status" data-update="enquiry" data-id="' + esc(item.id) + '">' + ["new","contacted","qualified","converted","closed"].map(s => '<option value="' + s + '"' + (item.status === s ? " selected" : "") + '>' + statusLabels[s] + '</option>').join("") + '</select></td></tr>'
+      '<tr><td><strong>' + esc(item.contact_name) + '</strong><small>' + esc(item.business_name || item.contact_method || "No contact detail") + '</small><small>' + dateLabel(item.created_at) + '</small></td><td><strong>' + esc(item.service) + '</strong><small>' + esc(item.location || "Location not recorded") + '</small><small>' + esc(item.message || "") + '</small></td><td><span class="priority priority-' + esc(item.priority) + '">' + esc(item.priority) + '</span></td><td><select aria-label="Update enquiry status" data-update="enquiry" data-id="' + esc(item.id) + '" data-previous="' + esc(item.status) + '">' + ["new","contacted","qualified","converted","closed"].map(s => '<option value="' + s + '"' + (item.status === s ? " selected" : "") + '>' + statusLabels[s] + '</option>').join("") + '</select></td></tr>'
     ).join("") + '</tbody></table>' : empty("No enquiries in this view.");
   }
 
@@ -78,7 +78,7 @@
     const filter = $("project-filter").value;
     const rows = state.projects.filter(x => filter === "all" || x.status === filter);
     $("project-list").innerHTML = rows.length ? '<table class="ops-table"><thead><tr><th>Project</th><th>Due date</th><th>Quote</th><th>Status</th></tr></thead><tbody>' + rows.map(item =>
-      '<tr><td><strong>' + esc(item.title) + '</strong><small>' + esc(item.service) + ' · ' + esc(item.customer?.full_name || "No customer linked") + '</small></td><td>' + dateLabel(item.due_date) + '</td><td>' + money(item.quote_amount, item.currency) + '</td><td><select aria-label="Update project status" data-update="project" data-id="' + esc(item.id) + '">' + ["planned","active","on-hold","completed","cancelled"].map(s => '<option value="' + s + '"' + (item.status === s ? " selected" : "") + '>' + statusLabels[s] + '</option>').join("") + '</select></td></tr>'
+      '<tr><td><strong>' + esc(item.title) + '</strong><small>' + esc(item.service) + ' · ' + esc(item.customer?.full_name || "No customer linked") + '</small></td><td>' + dateLabel(item.due_date) + '</td><td>' + money(item.quote_amount, item.currency) + '</td><td><select aria-label="Update project status" data-update="project" data-id="' + esc(item.id) + '" data-previous="' + esc(item.status) + '">' + ["planned","active","on-hold","completed","cancelled"].map(s => '<option value="' + s + '"' + (item.status === s ? " selected" : "") + '>' + statusLabels[s] + '</option>').join("") + '</select></td></tr>'
     ).join("") + '</tbody></table>' : empty("No projects in this view.");
   }
 
@@ -86,7 +86,7 @@
     const filter = $("task-filter").value;
     const rows = state.tasks.filter(x => filter === "all" || (filter === "done" ? x.status === "done" : x.status !== "done"));
     $("task-list").innerHTML = rows.length ? '<table class="ops-table"><thead><tr><th>Task</th><th>Project / due</th><th>Status</th></tr></thead><tbody>' + rows.map(item =>
-      '<tr><td><strong>' + esc(item.title) + '</strong><small><span class="priority priority-' + esc(item.priority) + '">' + esc(item.priority) + '</span></small></td><td>' + esc(item.project?.title || "Project") + '<small>' + dateLabel(item.due_date) + '</small></td><td><select aria-label="Update task status" data-update="task" data-id="' + esc(item.id) + '">' + ["todo","in-progress","done"].map(s => '<option value="' + s + '"' + (item.status === s ? " selected" : "") + '>' + statusLabels[s] + '</option>').join("") + '</select></td></tr>'
+      '<tr><td><strong>' + esc(item.title) + '</strong><small><span class="priority priority-' + esc(item.priority) + '">' + esc(item.priority) + '</span></small></td><td>' + esc(item.project?.title || "Project") + '<small>' + dateLabel(item.due_date) + '</small></td><td><select aria-label="Update task status" data-update="task" data-id="' + esc(item.id) + '" data-previous="' + esc(item.status) + '">' + ["todo","in-progress","done"].map(s => '<option value="' + s + '"' + (item.status === s ? " selected" : "") + '>' + statusLabels[s] + '</option>').join("") + '</select></td></tr>'
     ).join("") + '</tbody></table>' : empty("No tasks in this view.");
   }
 
