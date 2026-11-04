@@ -2,3 +2,50 @@
 .skip{position:absolute;left:-9999px;top:8px;background:#fff;color:var(--forest);padding:10px 14px;border:2px solid var(--jade);border-radius:8px;z-index:1000}.skip:focus{left:12px}
 
 .text-button{border:0;padding:0;background:transparent;color:var(--jade);font:inherit;font-size:.85rem;font-weight:750;text-decoration:underline;cursor:pointer}.text-button:disabled{opacity:.6;cursor:wait}
+
+
+/* Augusta operations centre */
+.ops-tabs{display:flex;gap:7px;overflow-x:auto;padding:7px;margin:0 0 24px;border:1px solid var(--line);border-radius:14px;background:#fff;scrollbar-width:thin}
+.ops-tabs button{flex:0 0 auto;min-height:42px;padding:9px 15px;border:0;border-radius:9px;background:transparent;color:var(--muted);font:inherit;font-size:.88rem;font-weight:750;cursor:pointer}
+.ops-tabs button.active{background:var(--forest);color:#fff}
+.ops-tabs button:focus-visible,.ops-tabs button:hover{outline:2px solid #28745f55;outline-offset:2px}
+.ops-section-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin:4px 0 20px}
+.ops-section-heading h2{margin:4px 0;color:var(--forest);font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.08;letter-spacing:-.045em}
+.ops-section-heading .hint{max-width:620px;margin:8px 0 0}
+.ops-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:20px}
+.ops-kpis article{padding:20px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.ops-kpis span,.ops-kpis small{display:block;color:var(--muted);font-size:.8rem}
+.ops-kpis strong{display:block;margin:8px 0;font-size:2.1rem;line-height:1;color:var(--forest);letter-spacing:-.05em}
+.ops-overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.ops-overview-grid .panel{min-width:0}
+.ops-two-col{display:grid;grid-template-columns:minmax(260px,.72fr) minmax(0,1.5fr);gap:18px;align-items:start}
+.ops-form{display:grid;gap:0}
+.ops-form h3{margin:0 0 12px;color:var(--forest);font-size:1.2rem}
+.ops-form label{display:grid;gap:6px;margin:10px 0;font-size:.84rem;font-weight:750}
+.ops-form input,.ops-form select,.ops-form textarea{width:100%;min-width:0;padding:11px 12px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);font:inherit;font-size:.9rem}
+.ops-form textarea{resize:vertical}
+.ops-form .primary{margin-top:12px}
+.ops-inline-fields{display:grid;grid-template-columns:1.2fr .8fr;gap:10px}
+.ops-table-wrap{width:100%;overflow-x:auto}
+.ops-table{width:100%;border-collapse:collapse;font-size:.84rem;text-align:left}
+.ops-table th{padding:10px 12px;border-bottom:1px solid var(--line);color:var(--muted);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.ops-table td{padding:13px 12px;border-bottom:1px solid var(--line);vertical-align:top;min-width:110px}
+.ops-table td:first-child{min-width:150px}
+.ops-table tr:last-child td{border-bottom:0}
+.ops-table td strong,.ops-table td small{display:block}
+.ops-table td small{margin-top:4px;color:var(--muted);font-size:.75rem;max-width:260px;overflow-wrap:anywhere}
+.ops-table select,.panel-heading select{max-width:145px;padding:8px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);font:inherit;font-size:.78rem}
+.panel-heading{margin-bottom:14px}
+.panel-heading h2,.panel-heading h3{margin:0;color:var(--forest)}
+.ops-list{display:grid;gap:0}
+.ops-list-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.ops-list-row:last-child{border-bottom:0}
+.ops-list-row strong,.ops-list-row small{display:block}
+.ops-list-row strong{font-size:.9rem}
+.ops-list-row small{margin-top:3px;color:var(--muted);font-size:.75rem}
+.priority{display:inline-block;padding:3px 8px;border-radius:99px;background:var(--soft);color:var(--muted);font-size:.7rem;font-weight:800;text-transform:capitalize}
+.priority-high,.priority-urgent{background:#f9e6dc;color:#8b3820}
+.priority-low{background:#e9eee9;color:#53645b}
+.message.error{color:#a33}
+@media(max-width:900px){.ops-two-col{grid-template-columns:1fr}.ops-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.ops-overview-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.ops-section-heading{align-items:flex-start;flex-direction:column}.ops-kpis{gap:9px}.ops-kpis article{padding:14px}.ops-kpis strong{font-size:1.7rem}.ops-tabs{margin-left:-2vw;margin-right:-2vw;border-radius:0}.ops-table{min-width:560px}.ops-form{padding:17px}.ops-list-row{align-items:flex-start}.ops-list-row .status{white-space:nowrap}}

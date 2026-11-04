@@ -42,12 +42,95 @@
         </div>
         <a href="../gallery.html" target="_blank" rel="noopener" class="secondary">View public gallery ↗</a>
       </div>
-      <div class="stats" aria-label="Media statistics">
+      <nav class="ops-tabs" aria-label="Management sections">
+        <button type="button" data-tab="overview" class="active" aria-pressed="true">Overview</button>
+        <button type="button" data-tab="enquiries" aria-pressed="false">Enquiries</button>
+        <button type="button" data-tab="customers" aria-pressed="false">Customers</button>
+        <button type="button" data-tab="projects" aria-pressed="false">Projects</button>
+        <button type="button" data-tab="tasks" aria-pressed="false">Tasks</button>
+        <button type="button" data-tab="media" aria-pressed="false">Media library</button>
+      </nav>
+      <section class="ops-view" data-panel="overview" aria-labelledby="overview-title">
+        <div class="ops-section-heading"><div><p class="eyebrow">YOUR BUSINESS AT A GLANCE</p><h2 id="overview-title">Operations overview</h2><p class="hint">A live view of the enquiries, customers and work Augusta is managing.</p></div><button class="secondary" type="button" data-refresh>Refresh data</button></div>
+        <div class="ops-kpis">
+          <article><span>New enquiries</span><strong id="kpi-new-enquiries">0</strong><small>Waiting for follow-up</small></article>
+          <article><span>Customers</span><strong id="kpi-customers">0</strong><small>Saved customer records</small></article>
+          <article><span>Active projects</span><strong id="kpi-active-projects">0</strong><small>Currently in progress</small></article>
+          <article><span>Open tasks</span><strong id="kpi-open-tasks">0</strong><small>Work still to complete</small></article>
+        </div>
+        <div class="ops-overview-grid">
+          <section class="panel"><div class="panel-heading"><div><p class="eyebrow">LATEST CONTACTS</p><h2>Recent enquiries</h2></div><button class="text-button" type="button" data-go="enquiries">View all</button></div><div id="overview-enquiries" class="ops-list"><p class="empty">Loading enquiries…</p></div></section>
+          <section class="panel"><div class="panel-heading"><div><p class="eyebrow">DELIVERY</p><h2>Current projects</h2></div><button class="text-button" type="button" data-go="projects">View all</button></div><div id="overview-projects" class="ops-list"><p class="empty">Loading projects…</p></div></section>
+        </div>
+      </section>
+      <section class="ops-view hidden" data-panel="enquiries" aria-labelledby="enquiries-title">
+        <div class="ops-section-heading"><div><p class="eyebrow">SALES PIPELINE</p><h2 id="enquiries-title">Enquiries</h2><p class="hint">Record every conversation, track follow-up and keep opportunities from getting lost.</p></div></div>
+        <div class="ops-two-col">
+          <form id="enquiry-form" class="panel ops-form"><h3>Record an enquiry</h3>
+            <label for="enquiry-name">Contact name<input id="enquiry-name" name="contact_name" required maxlength="120"></label>
+            <label for="enquiry-business">Business / organisation<input id="enquiry-business" name="business_name" maxlength="160"></label>
+            <label for="enquiry-contact">Phone, WhatsApp or email<input id="enquiry-contact" name="contact_method" maxlength="180"></label>
+            <label for="enquiry-service">Service requested<select id="enquiry-service" name="service" required><option value="">Choose service</option><option>Photography</option><option>Videography</option><option>Photo editing</option><option>Video editing</option><option>Content & media support</option><option>Augusta Home</option><option>Cleaning & organisation</option><option>Mobile laundry & ironing</option><option>Wardrobe support</option><option>Other / consultation</option></select></label>
+            <label for="enquiry-location">Location<input id="enquiry-location" name="location" maxlength="160"></label>
+            <label for="enquiry-date">Preferred date<input id="enquiry-date" name="preferred_date" type="date"></label>
+            <label for="enquiry-priority">Priority<select id="enquiry-priority" name="priority"><option value="normal">Normal</option><option value="high">High</option><option value="urgent">Urgent</option><option value="low">Low</option></select></label>
+            <label for="enquiry-message">Notes / brief<textarea id="enquiry-message" name="message" rows="3" maxlength="2000"></textarea></label>
+            <button class="primary" type="submit">Save enquiry</button><p class="message" id="enquiry-feedback" role="status" aria-live="polite"></p>
+          </form>
+          <section class="panel"><div class="panel-heading"><div><p class="eyebrow">FOLLOW-UP TRACKER</p><h3>Enquiry pipeline</h3></div><label class="visually-hidden" for="enquiry-filter">Filter enquiries</label><select id="enquiry-filter" aria-label="Filter enquiries"><option value="all">All enquiries</option><option value="new">New</option><option value="contacted">Contacted</option><option value="qualified">Qualified</option><option value="converted">Converted</option><option value="closed">Closed</option></select></div><div id="enquiry-list" class="ops-table-wrap"><p class="empty">Loading enquiries…</p></div></section>
+        </div>
+      </section>
+      <section class="ops-view hidden" data-panel="customers" aria-labelledby="customers-title">
+        <div class="ops-section-heading"><div><p class="eyebrow">RELATIONSHIP RECORDS</p><h2 id="customers-title">Customers</h2><p class="hint">Keep customer contact details and service history in one private place.</p></div></div>
+        <div class="ops-two-col">
+          <form id="customer-form" class="panel ops-form"><h3>Add a customer</h3>
+            <label for="customer-name">Full name<input id="customer-name" name="full_name" required maxlength="120"></label>
+            <label for="customer-business">Business / organisation<input id="customer-business" name="business_name" maxlength="160"></label>
+            <label for="customer-email">Email<input id="customer-email" name="email" type="email" maxlength="180"></label>
+            <label for="customer-phone">Phone / WhatsApp<input id="customer-phone" name="phone" maxlength="60"></label>
+            <label for="customer-location">Location<input id="customer-location" name="location" maxlength="160"></label>
+            <label for="customer-notes">Internal notes<textarea id="customer-notes" name="notes" rows="3" maxlength="2000"></textarea></label>
+            <button class="primary" type="submit">Save customer</button><p class="message" id="customer-feedback" role="status" aria-live="polite"></p>
+          </form>
+          <section class="panel"><div class="panel-heading"><div><p class="eyebrow">CUSTOMER DIRECTORY</p><h3>Saved customers</h3></div><span id="customer-count" class="status">0 records</span></div><div id="customer-list" class="ops-table-wrap"><p class="empty">Loading customers…</p></div></section>
+        </div>
+      </section>
+      <section class="ops-view hidden" data-panel="projects" aria-labelledby="projects-title">
+        <div class="ops-section-heading"><div><p class="eyebrow">WORK DELIVERY</p><h2 id="projects-title">Projects</h2><p class="hint">Track agreed work, due dates, quoted amounts and delivery status.</p></div></div>
+        <div class="ops-two-col">
+          <form id="project-form" class="panel ops-form"><h3>Create a project</h3>
+            <label for="project-title">Project title<input id="project-title" name="title" required maxlength="160"></label>
+            <label for="project-customer">Customer<select id="project-customer" name="customer_id"><option value="">Select customer (optional)</option></select></label>
+            <label for="project-service">Service<select id="project-service" name="service" required><option value="">Choose service</option><option>Photography</option><option>Videography</option><option>Photo editing</option><option>Video editing</option><option>Content & media support</option><option>Augusta Home</option><option>Cleaning & organisation</option><option>Mobile laundry & ironing</option><option>Wardrobe support</option><option>Other</option></select></label>
+            <label for="project-start">Start date<input id="project-start" name="start_date" type="date"></label>
+            <label for="project-due">Due date<input id="project-due" name="due_date" type="date"></label>
+            <div class="ops-inline-fields"><label for="project-amount">Quoted amount<input id="project-amount" name="quote_amount" type="number" min="0" step="1000"></label><label for="project-currency">Currency<select id="project-currency" name="currency"><option>UGX</option><option>USD</option></select></label></div>
+            <label for="project-description">Project brief<textarea id="project-description" name="description" rows="3" maxlength="2000"></textarea></label>
+            <button class="primary" type="submit">Create project</button><p class="message" id="project-feedback" role="status" aria-live="polite"></p>
+          </form>
+          <section class="panel"><div class="panel-heading"><div><p class="eyebrow">DELIVERY TRACKER</p><h3>All projects</h3></div><label class="visually-hidden" for="project-filter">Filter projects</label><select id="project-filter" aria-label="Filter projects"><option value="all">All projects</option><option value="planned">Planned</option><option value="active">Active</option><option value="on-hold">On hold</option><option value="completed">Completed</option><option value="cancelled">Cancelled</option></select></div><div id="project-list" class="ops-table-wrap"><p class="empty">Loading projects…</p></div></section>
+        </div>
+      </section>
+      <section class="ops-view hidden" data-panel="tasks" aria-labelledby="tasks-title">
+        <div class="ops-section-heading"><div><p class="eyebrow">NEXT ACTIONS</p><h2 id="tasks-title">Tasks</h2><p class="hint">Break projects into practical next steps and keep due dates visible.</p></div></div>
+        <div class="ops-two-col">
+          <form id="task-form" class="panel ops-form"><h3>Add a task</h3>
+            <label for="task-project">Project<select id="task-project" name="project_id" required><option value="">Choose a project</option></select></label>
+            <label for="task-title">Task<input id="task-title" name="title" required maxlength="160"></label>
+            <label for="task-due">Due date<input id="task-due" name="due_date" type="date"></label>
+            <label for="task-priority">Priority<select id="task-priority" name="priority"><option value="normal">Normal</option><option value="high">High</option><option value="low">Low</option></select></label>
+            <label for="task-description">Notes<textarea id="task-description" name="description" rows="3" maxlength="1000"></textarea></label>
+            <button class="primary" type="submit">Add task</button><p class="message" id="task-feedback" role="status" aria-live="polite"></p>
+          </form>
+          <section class="panel"><div class="panel-heading"><div><p class="eyebrow">TASK BOARD</p><h3>Work to complete</h3></div><label class="visually-hidden" for="task-filter">Filter tasks</label><select id="task-filter" aria-label="Filter tasks"><option value="open">Open tasks</option><option value="all">All tasks</option><option value="done">Completed</option></select></div><div id="task-list" class="ops-table-wrap"><p class="empty">Loading tasks…</p></div></section>
+        </div>
+      </section>
+      <div class="stats ops-view hidden" data-panel="media" aria-label="Media statistics">
         <article><strong id="total-count">0</strong><span>Total media</span></article>
         <article><strong id="published-count">0</strong><span>Published</span></article>
         <article><strong id="draft-count">0</strong><span>Drafts</span></article>
       </div>
-      <div class="workspace">
+      <div class="workspace ops-view hidden" data-panel="media">
         <section class="panel" aria-labelledby="upload-title">
           <p class="eyebrow">ADD TO WEBSITE</p>
           <h2 id="upload-title">Upload media</h2>
@@ -98,5 +181,6 @@
   <script src="config.js"></script>
   <script src="admin.js"></script>
   <script src="forgot-password.js"></script>
+  <script src="operations.js"></script>
 </body>
 </html>

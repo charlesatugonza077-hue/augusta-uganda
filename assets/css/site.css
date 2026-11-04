@@ -12,3 +12,30 @@
 .art-card{z-index:2;backdrop-filter:blur(8px)}
 @media(max-width:600px){.hero-photo{object-position:center}.art-play{right:20px;top:20px;width:46px;height:46px}}
 @media(prefers-reduced-motion:reduce){.hero-photo{transition:none}.hero-art:hover .hero-photo{transform:none}}
+
+
+/* Conversion-focused contact experience */
+.contact-hero{padding:68px 0 58px;background:linear-gradient(115deg,#f0f3ed,#f8f7f1)}
+.contact-hero h1{max-width:780px;font-size:clamp(2.8rem,6vw,5rem);line-height:.98;letter-spacing:-.07em}
+.contact-hero p:not(.eyebrow){max-width:650px;color:var(--muted);font-size:17px}
+.contact-section{background:#f7f7f1}
+.contact-layout{display:grid;grid-template-columns:minmax(250px,.72fr) minmax(0,1.28fr);gap:56px;align-items:start}
+.contact-aside{position:sticky;top:110px;padding:16px 0}
+.contact-aside h2{max-width:420px;margin:12px 0 18px;font-size:clamp(2.2rem,4vw,3.4rem);line-height:.98;letter-spacing:-.065em;color:var(--ink)}
+.contact-aside>p:not(.eyebrow){max-width:440px;color:var(--muted);font-size:14px}
+.contact-step{display:flex;gap:14px;padding:17px 0;border-bottom:1px solid var(--line)}
+.contact-step>span{color:var(--brand);font-size:12px;font-weight:900}
+.contact-step strong,.contact-step small{display:block}
+.contact-step strong{font-size:14px}
+.contact-step small{margin-top:4px;color:var(--muted);font-size:12px}
+.contact-note{margin-top:25px;padding:19px;border-radius:15px;background:#e8efe8}
+.contact-note strong{color:var(--deep);font-size:13px}
+.contact-note p{margin:7px 0 10px;color:#52655a;font-size:12px}
+.contact-note a{font-size:12px;font-weight:800;color:var(--deep);text-decoration:none}
+.contact-form{max-width:none;padding:32px}
+.contact-form h2{margin:6px 0 22px;color:var(--deep);font-size:clamp(1.6rem,3vw,2.25rem);letter-spacing:-.05em}
+.contact-consent{display:flex;align-items:flex-start;gap:11px;margin:22px 0;color:var(--muted);font-size:12px;font-weight:500;line-height:1.45}
+.contact-consent input{flex:0 0 auto;width:18px;height:18px;margin:1px 0 0;accent-color:var(--brand)}
+.contact-form>.button{min-height:50px}
+@media(max-width:900px){.contact-layout{grid-template-columns:1fr;gap:22px}.contact-aside{position:static;padding:0}.contact-aside h2{max-width:650px}.contact-note{max-width:620px}}
+@media(max-width:600px){.contact-hero{padding:50px 0 42px}.contact-hero h1{font-size:2.8rem}.contact-layout{gap:18px}.contact-form{padding:20px}.contact-form .form-grid{grid-template-columns:1fr}.contact-form .form-field.full{grid-column:auto}}

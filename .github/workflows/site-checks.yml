@@ -32,6 +32,8 @@ jobs:
           node --check assets/js/gallery.js
           node --check admin/admin.js
           node --check admin/forgot-password.js
+          node --check admin/operations.js
+          node --check assets/js/homepage-portfolio.js
       - name: Test optional enquiry Worker source
         run: |
           node --check backend/enquiry-worker/src/index.js
