@@ -86,6 +86,7 @@
     if (!window.supabase || !cfg.supabaseUrl || !cfg.supabaseAnonKey ||
         cfg.supabaseUrl.startsWith("ADD_") || cfg.supabaseAnonKey.startsWith("ADD_")) {
       root.innerHTML = '<div class="gallery-empty"><h3>Our portfolio is being prepared</h3><p>Please check back soon.</p></div>';
+      root.setAttribute("aria-busy", "false");
       if (status) status.textContent = "Gallery connection is not configured.";
       return;
     }
@@ -113,6 +114,7 @@
       console.error("Augusta gallery could not load:", error);
       root.innerHTML = '<div class="gallery-empty"><h3>We could not load the portfolio</h3><p>Please try again in a moment. If the problem continues, contact Augusta directly.</p><button class="button gallery-retry" type="button">Try again</button></div>';
       root.querySelector(".gallery-retry")?.addEventListener("click", () => {
+        root.setAttribute("aria-busy", "true");
         root.innerHTML = '<p class="gallery-loading">Loading approved portfolio work…</p>';
         if (status) status.textContent = "Reconnecting to the portfolio…";
         init();
