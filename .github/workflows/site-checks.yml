@@ -29,6 +29,9 @@ jobs:
         run: |
           node --check assets/js/config.js
           node --check assets/js/site.js
+          node --check assets/js/gallery.js
+          node --check admin/admin.js
+          node --check admin/forgot-password.js
       - name: Test optional enquiry Worker source
         run: |
           node --check backend/enquiry-worker/src/index.js
