@@ -69,6 +69,7 @@
           <form id="enquiry-form" class="panel ops-form"><h3>Record an enquiry</h3>
             <label for="enquiry-name">Contact name<input id="enquiry-name" name="contact_name" required maxlength="120"></label>
             <label for="enquiry-business">Business / organisation<input id="enquiry-business" name="business_name" maxlength="160"></label>
+            <label for="enquiry-customer">Link an existing customer<select id="enquiry-customer" name="customer_id"><option value="">No linked customer</option></select></label>
             <label for="enquiry-contact">Phone, WhatsApp or email<input id="enquiry-contact" name="contact_method" maxlength="180"></label>
             <label for="enquiry-service">Service requested<select id="enquiry-service" name="service" required><option value="">Choose service</option><option>Photography</option><option>Videography</option><option>Photo editing</option><option>Video editing</option><option>Content & media support</option><option>Augusta Home</option><option>Cleaning & organisation</option><option>Mobile laundry & ironing</option><option>Wardrobe support</option><option>Other / consultation</option></select></label>
             <label for="enquiry-location">Location<input id="enquiry-location" name="location" maxlength="160"></label>
@@ -101,6 +102,7 @@
           <form id="project-form" class="panel ops-form"><h3>Create a project</h3>
             <label for="project-title">Project title<input id="project-title" name="title" required maxlength="160"></label>
             <label for="project-customer">Customer<select id="project-customer" name="customer_id"><option value="">Select customer (optional)</option></select></label>
+            <label for="project-enquiry">Related enquiry<select id="project-enquiry" name="enquiry_id"><option value="">No linked enquiry</option></select></label>
             <label for="project-service">Service<select id="project-service" name="service" required><option value="">Choose service</option><option>Photography</option><option>Videography</option><option>Photo editing</option><option>Video editing</option><option>Content & media support</option><option>Augusta Home</option><option>Cleaning & organisation</option><option>Mobile laundry & ironing</option><option>Wardrobe support</option><option>Other</option></select></label>
             <label for="project-start">Start date<input id="project-start" name="start_date" type="date"></label>
             <label for="project-due">Due date<input id="project-due" name="due_date" type="date"></label>
